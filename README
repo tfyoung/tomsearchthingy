@@ -1,0 +1,60 @@
+Tom's Searching Thingy
+
+Running
+-------
+
+This project requires python 3 and should run on all python 3 installations without need for external libraries.
+It has been tested on python 3.6.4 on windows 10 and python 3.5.4 on Linux
+
+It does require 3 json files to be in the current working directory:
+
+ organizations.json
+ tickets.json
+ users.json
+
+Simply running tomsearch.py under the python interpreter in the directory where the json files reside.
+E.G:
+    python tomsearch.py
+
+Usage
+-----
+On startup the three files will be parsed and loaded into memory. Any issues observed with the files may
+produce a warning so that the user knows there may be missing fields in their input data.
+
+The system provides a prompt and will accept a search command to search each record type
+
+ (Cmd) search users <field name> <match>
+ (Cmd) search tickets <field name> <match>
+ (Cmd) search orgs <field name> <match>
+
+There is tab completion to complete the fields. Matching against an empty field can be done by leaving <match> blank. 
+If a matching record or records are found, then the results of those records and info relating to them are displayed.
+ 
+To exit the searching thingy, there is the 'exit' command.
+
+ (Cmd) exit
+
+Input Files
+-------
+Input files are checked for correctness to make searching and presenting easier. Any missing non identification fields
+are created with a value that matches the default value for that python type. When this occurs, a warning will
+be printed so that the user is made aware that their input files are missing fields for some records.
+An entry with an unexpected type will result in an error and the user must fix the data manually or use different 
+data before proceeding.
+
+Testing
+-------
+There are a variety of test cases and unit tests with this software.
+These can be run by running: 
+
+    python -m unittest tomsearch.py
+
+Some tests rely on the standard provided data files as test data and will fail if the data is different.
+Other tests require the "test-[valid|invalid].json" files be in the current working directory.
+
+TODO/Future expansion possibilities
+-----
+ * Provide a way to search for tags and domains more easily than mimicking python list syntax and guessing the correct order.
+    - Tab completion helps with this, but isn't a complete solution
+ * Provide more appropriate default values or remove this requirement
+
